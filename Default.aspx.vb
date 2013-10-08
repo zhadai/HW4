@@ -1,9 +1,13 @@
 ﻿
+'Programmer: Zhaoyang Dai
+'Student ID: 00719596
+
 Partial Class _Default
     Inherits System.Web.UI.Page
 
     Protected Sub BtnCalcSalary_Click(sender As Object, e As EventArgs) Handles BtnCalcSalary.Click
 
+        'declare variables
         Dim hourlyWage As Double
         Dim numOfHrs As Double
         Dim preTax As Double
@@ -17,14 +21,17 @@ Partial Class _Default
         preTax = CDbl(TBPreTax.Text)
         afterTax = CDbl(TBAfterTax.Text)
 
+        'calculate pre-tax salary
         preTaxSalary = hourlyWage * numOfHrs + preTax
 
+        'test if pre-tax salary is greater than $500
         If preTaxSalary < 500 Then
             taxRate = 0.18
         ElseIf preTaxSalary >= 500 Then
             taxRate = 0.22
         End If
 
+        'calculate after tax salary
         afterTaxSalary = preTaxSalary * (1 - taxRate) + afterTax
 
         LblSalary.Text = FormatCurrency(afterTaxSalary)
@@ -33,6 +40,7 @@ Partial Class _Default
 
     Protected Sub BtnClear_Click(sender As Object, e As EventArgs) Handles BtnClear.Click
 
+        'clear all values
         TBHourlyWage.Text = String.Empty
         TBNumOfHrs.Text = String.Empty
         TBPreTax.Text = String.Empty
@@ -44,6 +52,7 @@ Partial Class _Default
 
     Protected Sub Page_Load(sender As Object, e As EventArgs) Handles Me.Load
 
+        'focus on TBHourlyWage textbox when page is load
         TBHourlyWage.Focus()
 
     End Sub
