@@ -22,7 +22,7 @@ Partial Class _Default
         afterTax = CDbl(TBAfterTax.Text)
 
         'calculate pre-tax salary
-        preTaxSalary = hourlyWage * numOfHrs + preTax
+        preTaxSalary = hourlyWage * numOfHrs - preTax
 
         'test if pre-tax salary is greater than $500
         If preTaxSalary < 500 Then
@@ -32,7 +32,7 @@ Partial Class _Default
         End If
 
         'calculate after tax salary
-        afterTaxSalary = preTaxSalary * (1 - taxRate) + afterTax
+        afterTaxSalary = preTaxSalary * (1 - taxRate) - afterTax
 
         LblSalary.Text = FormatCurrency(afterTaxSalary)
 
